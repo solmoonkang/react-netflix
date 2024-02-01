@@ -1,6 +1,6 @@
 import './App.css';
-import Banner from './components/Banner/Banner';
-import Nav from './components/Nav/Nav';
+import Banner from './components/Banner';
+import Nav from './components/Nav';
 
 function App() {
   return (
