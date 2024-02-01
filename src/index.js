@@ -10,7 +10,7 @@ root.render(
 
   // BrowserRouter로 루트 컴포넌트를 감싸준다.
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="react-netflix">
       <App />
     </BrowserRouter>
   </React.StrictMode>
