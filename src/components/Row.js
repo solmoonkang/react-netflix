@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
+import MovieModal from "./MovieModal";
 import "./Row.css";
 
 const Row = ({ id, title, fetchUrl, isLargeRow }) => {
 
     const [movies, setMovies] = useState([]);
-    // const [modalOpen, setModalOpen] = useState(false);
-    // const [movieSelected, setMovieSelected] = useState({});
+    const [modalOpen, setModalOpen] = useState(false);
+    const [movieSelected, setMovieSelected] = useState({});
 
     useEffect(() => {
         fetchMovieData();
@@ -17,10 +18,10 @@ const Row = ({ id, title, fetchUrl, isLargeRow }) => {
         setMovies(request.data.results);
     }
 
-    // const handleClick = (movie) => {
-    //     setModalOpen(true);
-    //     setMovieSelected(movie);
-    // }
+    const handleClick = (movie) => {
+        setModalOpen(true);
+        setMovieSelected(movie);
+    }
 
     return (
         <section className="row">
@@ -36,7 +37,7 @@ const Row = ({ id, title, fetchUrl, isLargeRow }) => {
                     className={`row__poster ${isLargeRow && "row__posterLarge"}`}
                     src={`https://image.tmdb.org/t/p/original/${ isLargeRow ? movie.poster_path : movie.backdrop_path } `}
                     alt={movie.name}
-                    // onClick={() => handleClick(movie)}
+                    onClick={() => handleClick(movie)}
                 />
                 ))}
                 </div>
@@ -44,7 +45,7 @@ const Row = ({ id, title, fetchUrl, isLargeRow }) => {
                     <span className="arrow" onClick={() => {document.getElementById(id).scrollLeft += window.innerWidth - 80;}}>{">"}</span>
                 </div>
             </div>
-            {/* {modalOpen && (<MovieModal {...movieSelected} setModalOpen={setModalOpen} />)} */}
+            {modalOpen && (<MovieModal {...movieSelected} setModalOpen={setModalOpen} />)}
         </section>
     );
 }
