@@ -4,6 +4,7 @@ import requests from "./api/requests";
 import Banner from "./components/Banner";
 import Nav from "./components/Nav";
 import Row from "./components/Row";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Row title="Top Rated" if="TR" fetchUrl={requests.fetchTopRated} />
       <Row title="Action Movies" if="AM" fetchUrl={requests.fetchActionMovies} />
       <Row title="Comedy Movies" if="CM" fetchUrl={requests.fetchComedyMovies} />
+      <Footer />
     </div>
   );
 }
