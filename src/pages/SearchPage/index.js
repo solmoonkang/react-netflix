@@ -5,6 +5,9 @@ import axios from "../../api/axios";
 export default function SearchPage() {
 
     const [searchResults, setSearchResults] = useState([]);
+    const useQuery = () => {
+        return new URLSearchParams(useLocation().search);
+    }
 
     let query = useQuery();
     const searchTerm = query.get("q");
@@ -17,16 +20,12 @@ export default function SearchPage() {
 
     const fetchSearchMovie = async (searchTerm) => {
         try {
-            const request = await axios.get(`/search/multi?include_adult=false&query=$(searchTerm)`);
+            const request = await axios.get(`/search/multi?include_adult=false&query=${searchTerm}`);
             console.log(request);
             setSearchResults(request.data.results);
         } catch (error) {
             console.log("ERROR", error);
         }
-    }
-
-    const useQuery = () => {
-        return new URLSearchParams(useLocation().search);
     }
 
     return (
